@@ -14,7 +14,9 @@ const Products = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`/api/products/${productId}`);
+        const response = await axios.get(
+          `https://mern-backend-s2e3.onrender.com/api/products/${productId}`
+        );
         setProduct(response.data);
       } catch (error) {
         alert(error.message);
@@ -32,15 +34,18 @@ const Products = () => {
         alert("Please login to add to cart");
         navigate("/login");
       }
-      const response = await fetch("/api/cart/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          //jwt token sending to the backen
-          authorization: token,
-        },
-        body: JSON.stringify({ productId, quantity }), // Send only the id
-      });
+      const response = await fetch(
+        "https://mern-backend-s2e3.onrender.com/api/cart/add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            //jwt token sending to the backen
+            authorization: token,
+          },
+          body: JSON.stringify({ productId, quantity }), // Send only the id
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to add to the cart");

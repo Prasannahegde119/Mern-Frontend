@@ -24,17 +24,22 @@ const Cart = () => {
           alert("Please login to add to cart");
           navigate("/login");
         }
-        const cartResponse = await axios.get("/api/cart", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: token,
-          },
-        });
+        const cartResponse = await axios.get(
+          "https://mern-backend-s2e3.onrender.comhttps://mern-backend-s2e3.onrender.com/api/cart",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              authorization: token,
+            },
+          }
+        );
         const productIds = cartResponse.data.map((item) => item.productId);
 
         const productDetailsPromises = productIds.map((productId) =>
-          axios.get(`/api/products/${productId}`)
+          axios.get(
+            `https://mern-backend-s2e3.onrender.comhttps://mern-backend-s2e3.onrender.com/api/products/${productId}`
+          )
         );
 
         const productResponses = await Promise.all(productDetailsPromises);
@@ -54,7 +59,9 @@ const Cart = () => {
 
   const handleRemove = async (productId) => {
     try {
-      await axios.delete(`/api/cart/remove/${productId}`);
+      await axios.delete(
+        `https://mern-backend-s2e3.onrender.comhttps://mern-backend-s2e3.onrender.com/api/cart/remove/${productId}`
+      );
 
       const updatedCart = cartProducts.filter(
         (product) => product.id !== productId

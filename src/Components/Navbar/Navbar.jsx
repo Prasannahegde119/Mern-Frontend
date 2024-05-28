@@ -41,7 +41,9 @@ const CustomNavbar = () => {
           const productIds = cartResponse.data.map((item) => item.productId);
 
           const productDetailsPromises = productIds.map((productId) =>
-            axios.get(`/api/products/${productId}`)
+            axios.get(
+              `https://mern-backend-s2e3.onrender.com/api/products/${productId}`
+            )
           );
 
           const productResponses = await Promise.all(productDetailsPromises);
@@ -60,7 +62,7 @@ const CustomNavbar = () => {
     }
 
     // Fetch categories
-    fetch("/api/products")
+    fetch("https://mern-backend-s2e3.onrender.com/api/products")
       .then((response) => response.json())
       .then((data) => {
         const categoryList = data.map((product) => product.category);

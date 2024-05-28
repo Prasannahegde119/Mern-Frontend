@@ -11,13 +11,17 @@ const SingleOrder = () => {
   useEffect(() => {
     const fetchOrder = async () => {
       try {
-        const response = await axios.get(`/api/getallorders`);
+        const response = await axios.get(
+          `https://mern-backend-s2e3.onrender.com/api/getallorders`
+        );
         const orders = response.data;
         const order = orders.find((order) => order._id === orderId);
 
         if (order) {
           const productDetailsPromises = order.products.map((productId) =>
-            axios.get(`/api/products/${productId}`)
+            axios.get(
+              `https://mern-backend-s2e3.onrender.com/api/products/${productId}`
+            )
           );
           const productResponses = await Promise.all(productDetailsPromises);
           const products = productResponses.map((response) => response.data);
@@ -41,7 +45,7 @@ const SingleOrder = () => {
     const { value } = e.target;
     try {
       const response = await axios.put(
-        `/api/products/${productId}/update-delivery-status`,
+        `https://mern-backend-s2e3.onrender.com/api/products/${productId}/update-delivery-status`,
         {
           deliveryStatus: value === "delivered",
         }

@@ -15,13 +15,13 @@ const OrderDetails = () => {
       try {
         // Fetch orders from the API
         const ordersResponse = await axios.get(
-          "/api/getallorders"
+          "https://mern-backend-s2e3.onrender.com/api/getallorders"
         );
         const fetchedOrders = ordersResponse.data;
 
         // Fetch users from the API
         const usersResponse = await axios.get(
-          "/api/users"
+          "https://mern-backend-s2e3.onrender.com/api/users"
         );
         const users = usersResponse.data;
 

@@ -12,7 +12,9 @@ const ProductTable = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("/api/users");
+        const response = await axios.get(
+          "https://mern-backend-s2e3.onrender.com/api/users"
+        );
         setUsers(response.data);
         console.log(response.data);
       } catch (error) {
@@ -31,7 +33,9 @@ const ProductTable = () => {
   const handleRemove = async (userId) => {
     try {
       // Make DELETE request to remove user
-      await axios.delete(`/api/users/${userId}`);
+      await axios.delete(
+        `https://mern-backend-s2e3.onrender.com/api/users/${userId}`
+      );
       // Update users state after deletion
       setUsers(users.filter((user) => user._id !== userId));
       // Display alert after successful deletion
@@ -45,9 +49,12 @@ const ProductTable = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/api/users/${editingUserId}/edit-email`, {
-        email: editEmail,
-      });
+      await axios.put(
+        `https://mern-backend-s2e3.onrender.com/api/users/${editingUserId}/edit-email`,
+        {
+          email: editEmail,
+        }
+      );
       // Update users state after update
       setUsers(
         users.map((user) => {

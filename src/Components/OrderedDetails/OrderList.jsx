@@ -11,15 +11,20 @@ const OrderList = () => {
     const fetchOrders = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("/api/getorder", {
-          headers: {
-            Authorization: token,
-          },
-        });
+        const response = await axios.get(
+          "https://mern-backend-s2e3.onrender.com/api/getorder",
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
         const ordersWithProductDetails = await Promise.all(
           response.data.map(async (order) => {
             const productDetailsPromises = order.products.map((productId) =>
-              axios.get(`/api/products/${productId}`)
+              axios.get(
+                `https://mern-backend-s2e3.onrender.com/api/products/${productId}`
+              )
             );
             const productResponses = await Promise.all(productDetailsPromises);
             const products = productResponses.map((response) => response.data);

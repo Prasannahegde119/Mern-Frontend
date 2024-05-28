@@ -13,7 +13,9 @@ const ProductList = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("/api/products");
+        const response = await axios.get(
+          "https://mern-backend-s2e3.onrender.com/api/products"
+        );
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -25,7 +27,9 @@ const ProductList = () => {
 
   const handleRemove = async (productId) => {
     try {
-      await axios.delete(`/api/products/${productId}`);
+      await axios.delete(
+        `https://mern-backend-s2e3.onrender.com/api/products/${productId}`
+      );
       setProducts((prevProducts) =>
         prevProducts.filter((product) => product._id !== productId)
       );

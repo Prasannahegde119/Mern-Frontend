@@ -28,12 +28,15 @@ function DeliveryAddress() {
   const fetchAddresses = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`/api/getaddress`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: token,
-        },
-      });
+      const response = await axios.get(
+        `https://mern-backend-s2e3.onrender.com/api/getaddress`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+        }
+      );
       if (response.status === 200) {
         const data = response.data;
         setAddresses(data.addresses);
@@ -59,12 +62,16 @@ function DeliveryAddress() {
           cartItems: productIds, // Sending only the product IDs
           totalPrice: totalPrice,
         };
-        const response = await axios.post("/api/orders", orderData, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: token,
-          },
-        });
+        const response = await axios.post(
+          "https://mern-backend-s2e3.onrender.com/api/orders",
+          orderData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: token,
+            },
+          }
+        );
         if (response.status === 201) {
           console.log("Order placed successfully");
           console.log(orderData);
@@ -87,12 +94,16 @@ function DeliveryAddress() {
   const handleSaveNewAddress = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.post("/api/addresses", newAddressFormData, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: token,
-        },
-      });
+      const response = await axios.post(
+        "https://mern-backend-s2e3.onrender.com/api/addresses",
+        newAddressFormData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+        }
+      );
       if (response.status === 201) {
         console.log("Address added successfully");
         fetchAddresses(); // Call fetchAddresses here
