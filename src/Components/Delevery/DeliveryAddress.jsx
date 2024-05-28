@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
-import { PlusCircle, CheckCircle } from "react-bootstrap-icons";
+import { PlusCircle } from "react-bootstrap-icons";
 import PriceDetails from "../PriceDetails/PriceDetails";
 import axios from "axios";
 import "./Delivery.css";
