@@ -1,6 +1,6 @@
 import React from "react";
 import { useCart } from "../Contexts/CartContext";
-import jsPDF from "jspdf";
+// import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { useNavigate } from "react-router-dom";
 
