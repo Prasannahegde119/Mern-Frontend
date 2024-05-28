@@ -29,12 +29,15 @@ const CustomNavbar = () => {
       // Fetch cart products when logged in
       const fetchCartProducts = async () => {
         try {
-          const cartResponse = await axios.get("/api/cart", {
-            headers: {
-              "Content-Type": "application/json",
-              authorization: token,
-            },
-          });
+          const cartResponse = await axios.get(
+            "https://mern-backend-s2e3.onrender.com/api/cart",
+            {
+              headers: {
+                "Content-Type": "application/json",
+                authorization: token,
+              },
+            }
+          );
           const productIds = cartResponse.data.map((item) => item.productId);
 
           const productDetailsPromises = productIds.map((productId) =>
