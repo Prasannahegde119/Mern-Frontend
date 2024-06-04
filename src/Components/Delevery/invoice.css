@@ -1,0 +1,41 @@
+.thank-you-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+.thank-you-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.thank-you-content h1 {
+  font-size: 3rem;
+  margin: 20px 0;
+  color: #343a40;
+}
+
+.thank-you-content p {
+  font-size: 1.2rem;
+  color: #6c757d;
+  margin-bottom: 30px;
+}
+
+.home-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.home-button:hover {
+  background-color: #0056b3;
+}
