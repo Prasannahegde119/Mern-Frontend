@@ -29,7 +29,7 @@ const Register = () => {
     try {
       // Send registration data to server
       const response = await fetch(
-        "https://mern-backend-s2e3.onrender.com/api/register",
+        "https://fasiondesign.onrender.com/api/register",
         {
           method: "POST",
           headers: {

@@ -15,7 +15,7 @@ const Products = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `https://mern-backend-s2e3.onrender.com/api/products/${productId}`
+          `https://fasiondesign.onrender.com/api/products/${productId}`
         );
         setProduct(response.data);
       } catch (error) {
@@ -35,7 +35,7 @@ const Products = () => {
         navigate("/login");
       }
       const response = await fetch(
-        "https://mern-backend-s2e3.onrender.com/api/cart/add",
+        "https://fasiondesign.onrender.com/api/cart/add",
         {
           method: "POST",
           headers: {

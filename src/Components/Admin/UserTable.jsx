@@ -14,7 +14,7 @@ const ProductList = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "https://mern-backend-s2e3.onrender.com/api/products"
+          "https://fasiondesign.onrender.com/api/products"
         );
         setProducts(response.data);
       } catch (error) {
@@ -28,7 +28,7 @@ const ProductList = () => {
   const handleRemove = async (productId) => {
     try {
       await axios.delete(
-        `https://mern-backend-s2e3.onrender.com/api/products/${productId}`
+        `https://fasiondesign.onrender.com/api/products/${productId}`
       );
       setProducts((prevProducts) =>
         prevProducts.filter((product) => product._id !== productId)

@@ -12,7 +12,7 @@ const SingleOrder = () => {
     const fetchOrder = async () => {
       try {
         const response = await axios.get(
-          `https://mern-backend-s2e3.onrender.com/api/getallorders`
+          `https://fasiondesign.onrender.com/api/getallorders`
         );
         const orders = response.data;
         const order = orders.find((order) => order._id === orderId);
@@ -20,7 +20,7 @@ const SingleOrder = () => {
         if (order) {
           const productDetailsPromises = order.products.map((productId) =>
             axios.get(
-              `https://mern-backend-s2e3.onrender.com/api/products/${productId}`
+              `https://fasiondesign.onrender.com/api/products/${productId}`
             )
           );
           const productResponses = await Promise.all(productDetailsPromises);
@@ -41,11 +41,11 @@ const SingleOrder = () => {
     fetchOrder();
   }, [orderId]);
 
-  const handleDeliveryStatusChange = async (e, productId) => {
+  const handleDeliveryStatusChange = async (e) => {
     const { value } = e.target;
     try {
       const response = await axios.put(
-        `https://mern-backend-s2e3.onrender.com/api/products/${productId}/update-delivery-status`,
+        `https://fasiondesign.onrender.com/api/orders/${orderId}/update-delivery-status`,
         {
           deliveryStatus: value === "delivered",
         }
@@ -54,11 +54,11 @@ const SingleOrder = () => {
 
       setOrder((prevOrder) => ({
         ...prevOrder,
-        products: prevOrder.products.map((product) =>
-          product._id === productId
-            ? { ...product, deliveryStatus: value === "delivered" }
-            : product
-        ),
+        deliveryStatus: value === "delivered",
+        products: prevOrder.products.map((product) => ({
+          ...product,
+          deliveryStatus: value === "delivered",
+        })),
       }));
     } catch (error) {
       console.error("Error updating delivery status:", error);
@@ -92,17 +92,17 @@ const SingleOrder = () => {
               />
               <p className="product-name">Name: {product.title.slice(0, 12)}</p>
               <p className="product-price">Price: ${product.price}</p>
-              <select
-                className="delivery-status"
-                onChange={(e) => handleDeliveryStatusChange(e, product._id)}
-                value={product.deliveryStatus ? "delivered" : "pending"}
-              >
-                <option value="pending">Pending</option>
-                <option value="delivered">Delivered</option>
-              </select>
             </li>
           ))}
         </ul>
+        <select
+          className="delivery-status"
+          onChange={handleDeliveryStatusChange}
+          value={order.deliveryStatus ? "delivered" : "pending"}
+        >
+          <option value="pending">Pending</option>
+          <option value="delivered">Delivered</option>
+        </select>
       </div>
     </div>
   );

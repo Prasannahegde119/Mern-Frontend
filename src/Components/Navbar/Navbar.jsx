@@ -30,7 +30,7 @@ const CustomNavbar = () => {
       const fetchCartProducts = async () => {
         try {
           const cartResponse = await axios.get(
-            "https://mern-backend-s2e3.onrender.com/api/cart",
+            "https://fasiondesign.onrender.com/api/cart",
             {
               headers: {
                 "Content-Type": "application/json",
@@ -42,7 +42,7 @@ const CustomNavbar = () => {
 
           const productDetailsPromises = productIds.map((productId) =>
             axios.get(
-              `https://mern-backend-s2e3.onrender.com/api/products/${productId}`
+              `https://fasiondesign.onrender.com/api/products/${productId}`
             )
           );
 
@@ -62,7 +62,7 @@ const CustomNavbar = () => {
     }
 
     // Fetch categories
-    fetch("https://mern-backend-s2e3.onrender.com/api/products")
+    fetch("https://fasiondesign.onrender.com/api/products")
       .then((response) => response.json())
       .then((data) => {
         const categoryList = data.map((product) => product.category);

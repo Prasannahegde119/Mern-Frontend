@@ -24,7 +24,7 @@ const Login = () => {
     try {
       // Send login data to server for authentication
       const response = await fetch(
-        "https://mern-backend-s2e3.onrender.com/api/login",
+        "https://fasiondesign.onrender.com/api/login",
         {
           method: "POST",
           headers: {

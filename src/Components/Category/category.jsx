@@ -13,7 +13,7 @@ const App = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "https://mern-backend-s2e3.onrender.com/api/products"
+          "https://fasiondesign.onrender.com/api/products"
         );
         setProducts(response.data);
       } catch (error) {

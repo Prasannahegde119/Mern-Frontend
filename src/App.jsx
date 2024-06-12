@@ -20,6 +20,7 @@ import OrderList from "./Components/OrderedDetails/OrderList";
 import SingleOrder from "./Components/Admin/OrderDetails/SingleOrder";
 import Layout from "./Components/Admin/Layout/Layout";
 import OrderDetails from "./Components/Admin/OrderDetails/OrderDetails";
+import ThanksPage from "./Components/Delevery/ThanksPage";
 const App = () => {
   return (
     <BrowserRouter>
@@ -44,6 +45,7 @@ const App = () => {
         <Route path="/DeliveryAddress" element={<DeliveryAddress />} />
         <Route path="/InvoiceGenerator" element={<InvoiceGenerator />} />
         <Route path="/OrderList" element={<OrderList />} />
+        <Route path="/thankspage" element={<ThanksPage />} />
 
         {/* Apply Layout to specific admin-related routes */}
         <Route element={<Layout />}>

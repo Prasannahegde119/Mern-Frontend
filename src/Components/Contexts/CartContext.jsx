@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
+import axios from "axios";
 
 // Create a new context
 const CartContext = createContext();
@@ -8,7 +9,6 @@ export const CartProvider = ({ children }) => {
   const [cartProducts, setCartProducts] = useState([]);
   const [totalItems, setTotalItems] = useState(0); // New state for total items
 
-  // Function to handle quantity change
   // Function to handle quantity change
   const handleQuantityChange = (productId, change) => {
     // Find the product in the cart
@@ -31,6 +31,22 @@ export const CartProvider = ({ children }) => {
     (total, product) => total + product.price * product.quantity,
     0
   );
+  const token = localStorage.getItem("token");
+
+  const clearCart = async () => {
+    try {
+      await axios.post("https://fasiondesign.onrender.com/api/cart/clear", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+      }); // Make sure this endpoint exists on your backend
+
+      // setCartProducts([]);
+    } catch (error) {
+      console.error("Error clearing the cart:", error);
+    }
+  };
 
   useEffect(() => {
     // Calculate total number of items in the cart
@@ -49,6 +65,7 @@ export const CartProvider = ({ children }) => {
         handleQuantityChange,
         totalPrice,
         totalItems,
+        clearCart, // Add clearCart to the context value
       }}
     >
       {children}

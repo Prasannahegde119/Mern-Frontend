@@ -13,7 +13,7 @@ const ProductTable = () => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(
-          "https://mern-backend-s2e3.onrender.com/api/users"
+          "https://fasiondesign.onrender.com/api/users"
         );
         setUsers(response.data);
         console.log(response.data);
@@ -34,7 +34,7 @@ const ProductTable = () => {
     try {
       // Make DELETE request to remove user
       await axios.delete(
-        `https://mern-backend-s2e3.onrender.com/api/users/${userId}`
+        `https://fasiondesign.onrender.com/api/users/${userId}`
       );
       // Update users state after deletion
       setUsers(users.filter((user) => user._id !== userId));
@@ -50,7 +50,7 @@ const ProductTable = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `https://mern-backend-s2e3.onrender.com/api/users/${editingUserId}/edit-email`,
+        `https://fasiondesign.onrender.com/api/users/${editingUserId}/edit-email`,
         {
           email: editEmail,
         }

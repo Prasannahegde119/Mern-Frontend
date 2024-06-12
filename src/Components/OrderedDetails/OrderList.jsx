@@ -12,7 +12,7 @@ const OrderList = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "https://mern-backend-s2e3.onrender.com/api/getorder",
+          "https://fasiondesign.onrender.com/api/getorder",
           {
             headers: {
               Authorization: token,
@@ -23,7 +23,7 @@ const OrderList = () => {
           response.data.map(async (order) => {
             const productDetailsPromises = order.products.map((productId) =>
               axios.get(
-                `https://mern-backend-s2e3.onrender.com/api/products/${productId}`
+                `https://fasiondesign.onrender.com/api/products/${productId}`
               )
             );
             const productResponses = await Promise.all(productDetailsPromises);
@@ -60,6 +60,11 @@ const OrderList = () => {
                 <p>Total Price: ${order.totalPrice}</p>
                 <p>Address: {order.address.address}</p>
                 <p>City: {order.address.city}</p>
+                <p>
+                  Delivery Status:{" "}
+                  {order.deliveryStatus ? "Delivered" : "Pending"}
+                </p>
+
                 <p>Products:</p>
                 <ul className="product-list1">
                   {order.products.map((product) => (

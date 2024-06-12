@@ -25,11 +25,15 @@ function DeliveryAddress() {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    fetchAddresses();
+  }, []);
+
   const fetchAddresses = async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `https://mern-backend-s2e3.onrender.com/api/getaddress`,
+        `https://fasiondesign.onrender.com/api/getaddress`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -48,22 +52,18 @@ function DeliveryAddress() {
     }
   };
 
-  useEffect(() => {
-    fetchAddresses();
-  }, []);
   const handleDelivery = async () => {
     if (selectedAddress && cartProducts.length > 0) {
       try {
         const token = localStorage.getItem("token");
-        // Extracting only the product IDs from the cartProducts array
         const productIds = cartProducts.map((product) => product.id);
         const orderData = {
           address: selectedAddress,
-          cartItems: productIds, // Sending only the product IDs
+          cartItems: productIds,
           totalPrice: totalPrice,
         };
         const response = await axios.post(
-          "https://mern-backend-s2e3.onrender.com/api/orders",
+          "https://fasiondesign.onrender.com/api/orders",
           orderData,
           {
             headers: {
@@ -75,6 +75,18 @@ function DeliveryAddress() {
         if (response.status === 201) {
           console.log("Order placed successfully");
           console.log(orderData);
+
+          const response = await axios.post(
+            "https://fasiondesign.onrender.com/api/cart/clear",
+            {},
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: token,
+              },
+            }
+          );
+
           navigate("/InvoiceGenerator");
         } else {
           console.error("Failed to place order");
@@ -95,7 +107,7 @@ function DeliveryAddress() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "https://mern-backend-s2e3.onrender.com/api/addresses",
+        "https://fasiondesign.onrender.com/api/addresses",
         newAddressFormData,
         {
           headers: {
@@ -106,7 +118,7 @@ function DeliveryAddress() {
       );
       if (response.status === 201) {
         console.log("Address added successfully");
-        fetchAddresses(); // Call fetchAddresses here
+        fetchAddresses();
         setShowNewAddressForm(false);
         setNewAddressFormData({
           name: "",
@@ -124,6 +136,7 @@ function DeliveryAddress() {
       console.error("Error adding address:", error);
     }
   };
+
   const handleNewAddressFormChange = (e) => {
     const { name, value } = e.target;
     setNewAddressFormData((prevState) => ({

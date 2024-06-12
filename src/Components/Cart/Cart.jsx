@@ -25,7 +25,7 @@ const Cart = () => {
           navigate("/login");
         }
         const cartResponse = await axios.get(
-          "https://mern-backend-s2e3.onrender.comhttps://mern-backend-s2e3.onrender.com/api/cart",
+          "https://fasiondesign.onrender.com/api/cart",
           {
             method: "GET",
             headers: {
@@ -38,7 +38,7 @@ const Cart = () => {
 
         const productDetailsPromises = productIds.map((productId) =>
           axios.get(
-            `https://mern-backend-s2e3.onrender.comhttps://mern-backend-s2e3.onrender.com/api/products/${productId}`
+            `https://fasiondesign.onrender.com/api/products/${productId}`
           )
         );
 
@@ -60,7 +60,7 @@ const Cart = () => {
   const handleRemove = async (productId) => {
     try {
       await axios.delete(
-        `https://mern-backend-s2e3.onrender.comhttps://mern-backend-s2e3.onrender.com/api/cart/remove/${productId}`
+        `https://fasiondesign.onrender.com/api/cart/remove/${productId}`
       );
 
       const updatedCart = cartProducts.filter(

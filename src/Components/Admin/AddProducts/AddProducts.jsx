@@ -27,7 +27,7 @@ const AddProducts = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        "https://mern-backend-s2e3.onrender.com/api/products",
+        "https://fasiondesign.onrender.com/api/products",
         {
           method: "POST",
           headers: {

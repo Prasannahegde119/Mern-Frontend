@@ -15,13 +15,13 @@ const OrderDetails = () => {
       try {
         // Fetch orders from the API
         const ordersResponse = await axios.get(
-          "https://mern-backend-s2e3.onrender.com/api/getallorders"
+          "https://fasiondesign.onrender.com/api/getallorders"
         );
         const fetchedOrders = ordersResponse.data;
 
         // Fetch users from the API
         const usersResponse = await axios.get(
-          "https://mern-backend-s2e3.onrender.com/api/users"
+          "https://fasiondesign.onrender.com/api/users"
         );
         const users = usersResponse.data;
 
@@ -88,6 +88,7 @@ const OrderDetails = () => {
               <th>Total Items</th>
               <th>Total Price</th>
               <th>Delivery Method</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -95,7 +96,7 @@ const OrderDetails = () => {
               <tr key={order._id}>
                 <td>
                   <Link to={`/SingleOrder/${order._id}`} className="Link">
-                    {order._id.slice(0, 4)}
+                    {order._id.slice(-4)}
                   </Link>
                 </td>
                 <td>{new Date(order.createdAt).toLocaleDateString()}</td>
@@ -103,6 +104,7 @@ const OrderDetails = () => {
                 <td>{order.products.length}</td>
                 <td>${order.totalPrice.toFixed(2)}</td>
                 <td>COD</td>
+                <td>{order.deliveryStatus ? "Delivered" : "Pending"}</td>
               </tr>
             ))}
           </tbody>
